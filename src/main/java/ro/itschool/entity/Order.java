@@ -33,11 +33,22 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE)
     private Set<Product> products;
 
-    public Order() {
-        this.currency = "RON";
-        this.dateCreated = LocalDateTime.now();
-        this.amount = 0D;
-    }
+//    @Transient
+//    public Double getTotalOrderPrice() {
+//        double sum = 0D;
+//        List<OrderProduct> orderProducts = getOrderProducts();
+//        for (OrderProduct op : orderProducts) {
+//            sum += op.getTotalPrice();
+//        }
+//        return sum;
+//    }
+//
+//    @Transient
+//    public int getNumberOfProducts() {
+//        return this.orderProducts.size();
+//    }
+
+
 
 }
 

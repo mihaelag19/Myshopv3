@@ -10,4 +10,8 @@ public interface OrderService {
     List<Order> getAllOrders();
 
     List<Order> getAllOrdersByUserId(Long userId);
+
+    Order create(Order order);
+
+    void update(Order order);
 }

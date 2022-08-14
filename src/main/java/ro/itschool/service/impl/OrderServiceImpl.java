@@ -8,6 +8,7 @@ import ro.itschool.repository.OrderRepository;
 import ro.itschool.repository.UserRepository;
 import ro.itschool.service.OrderService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -35,5 +36,19 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getAllOrdersByUserId(Long userId) {
         return orderRepository.findByUserId(userId);
+    }
+
+
+
+
+    @Override
+    public Order create(Order order) {
+        order.setDateCreated(LocalDateTime.now());
+        return this.orderRepository.save(order);
+    }
+
+    @Override
+    public void update(Order order) {
+        this.orderRepository.save(order);
     }
 }
