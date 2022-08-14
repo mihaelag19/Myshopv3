@@ -1,10 +1,9 @@
 package ro.itschool.entity;
 
-import com.sun.istack.NotNull;
-import lombok.*;
-import org.aspectj.weaver.ast.Or;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import lombok.*;
+
 
 
 @Setter
@@ -19,8 +18,8 @@ public class Product {
     @Column(name = "product_id")
     private Long id;
 
-    @NotNull
-    @Basic(optional = false)
+
+
     private String name;
     private Double price;
     private String description;

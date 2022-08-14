@@ -24,7 +24,13 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <style>
+    Body { margin: 0; font-family: "Optima", sans serif, color: black;
+    }
+    h4 { font-size: 25px; color: black; font-family: "Optima", sans serif;
+    }
 
+    </style>
             <h4 class="text-center">Press the buton below to activate your account</h4>
             <div class="card-body">
                 <form th:action="@{'/activation/'+${randomToken}}" th:object="${user}" method="POST">
