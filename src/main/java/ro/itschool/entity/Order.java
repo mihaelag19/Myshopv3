@@ -7,7 +7,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Setter
 @Getter
@@ -23,29 +22,30 @@ public class Order {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDateTime dateCreated;
     private String status;
-//    private List<Product> products = new ArrayList<>();
+
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     @ToString.Exclude
     private MyUser user;
-    @OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE)
-    private Set<Product> products;
 
-//    @Transient
-//    public Double getTotalOrderPrice() {
-//        double sum = 0D;
-//        List<OrderProduct> orderProducts = getOrderProducts();
-//        for (OrderProduct op : orderProducts) {
-//            sum += op.getTotalPrice();
-//        }
-//        return sum;
-//    }
-//
-//    @Transient
-//    public int getNumberOfProducts() {
-//        return this.orderProducts.size();
-//    }
+
+/*
+    @Transient
+    public Double getTotalOrderPrice() {
+        double sum = 0D;
+        List<OrderProduct> orderProducts = getOrderProducts();
+        for (OrderProduct op : orderProducts) {
+            sum += op.getTotalPrice();
+        }
+        return sum;
+    }
+
+    @Transient
+    public int getNumberOfProducts() {
+        return this.orderProducts.size();
+    }
+*/
 
 
 

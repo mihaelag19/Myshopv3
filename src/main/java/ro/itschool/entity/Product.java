@@ -24,8 +24,10 @@ public class Product {
     private Double price;
     private String description;
     private String pictureUrl;
+
+
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "cart_id")
     @ToString.Exclude
-    private Order order;
+    private Cart cart;
 }

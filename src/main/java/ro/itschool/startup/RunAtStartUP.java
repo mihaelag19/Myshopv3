@@ -5,12 +5,12 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import ro.itschool.entity.MyUser;
-import ro.itschool.entity.Order;
 import ro.itschool.entity.Role;
+import ro.itschool.service.OrderService;
+import ro.itschool.service.ProductService;
 import ro.itschool.service.UserService;
 import ro.itschool.util.Constants;
 
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,6 +18,12 @@ import java.util.Set;
 public class RunAtStartUP {
     @Autowired
     private UserService userService;
+    @Autowired
+    private OrderService orderService;
+    @Autowired
+    private ProductService productService;
+
+
 
     @EventListener(ContextRefreshedEvent.class)
     public void contextRefreshedEvent() {
@@ -39,25 +45,24 @@ public class RunAtStartUP {
         myUser.setRandomTokenEmail("randomToken");
 
 
-        Set<Order> orders = new HashSet<>();
-        Order order= new Order();
-        order.setAmount(50D);
-        order.setCurrency("RON");
-        order.setUser(myUser);
-        order.setStatus("Saved");
-        order.setDateCreated(LocalDateTime.now());
-
-        Order order2= new Order();
-        order2.setAmount(40D);
-        order2.setCurrency("RON");
-        order2.setUser(myUser);
-        order2.setStatus("Saved");
-        order2.setDateCreated(LocalDateTime.now());
-
-        orders.add(order);
-        orders.add(order2);
-        myUser.setOrders(orders);
-
+//        Set<Order> orders = new HashSet<>();
+//        Order order= new Order();
+//        order.setAmount(50D);
+//        order.setCurrency("RON");
+//        order.setUser(myUser);
+//        order.setStatus("Completed");
+//        order.setDateCreated(LocalDateTime.now());
+//        Set<Product> products = new HashSet<>();
+//        Product product =new Product();
+//        product.setName("Prom dress4");
+//        product.setDescription("This is prom dress4");
+//        product.setPrice(440D);
+//        product.setPictureUrl("d:\\Users\\Asus\\Desktop\\Pictures\\4.jpg");
+//        products.add(product);
+//        order.setProducts(products);
+//        orders.add(order);
+//        myUser.setOrders(orders);
+//        orderService.save(order);
         userService.saveUser(myUser);
 
 
@@ -83,26 +88,26 @@ public class RunAtStartUP {
         myUser.setRandomTokenEmail("randomToken");
 
 
-        Set<Order> orders = new HashSet<>();
-        Order order= new Order();
-        order.setAmount(120D);
-        order.setCurrency("RON");
-        order.setUser(myUser);
-        order.setStatus("In progress");
-        order.setDateCreated(LocalDateTime.now());
+//        Set<Order> orders = new HashSet<>();
+//        Order order= new Order();
+//        order.setAmount(120D);
+//        order.setCurrency("RON");
+//        order.setUser(myUser);
+//        order.setStatus("In progress");
+//        order.setDateCreated(LocalDateTime.now());
 
-        Order order2= new Order();
-        order2.setAmount(23D);
-        order2.setCurrency("RON");
-        order2.setUser(myUser);
-        order2.setStatus("In progress");
-        order2.setDateCreated(LocalDateTime.now());
+//        Set<Product> products = new HashSet<>();
+//        Product product =new Product();
+//        product.setName("Prom dress3");
+//        product.setDescription("This is prom dress3");
+//        product.setPrice(440D);
+//        product.setPictureUrl("d:\\Users\\Asus\\Desktop\\Pictures\\3.jpg");
 
-        orders.add(order);
-        orders.add(order2);
-        myUser.setOrders(orders);
-
-
+//        products.add(product);
+//        order.setProducts(products);
+//        orders.add(order);
+//        myUser.setOrders(orders);
+//        orderService.save(order);
         userService.saveUser(myUser);
     }
 
@@ -124,30 +129,28 @@ public class RunAtStartUP {
         myUser.setPasswordConfirm("user2");
         myUser.setRandomTokenEmail("randomToken");
 
+//
+//        Set<Order> orders = new HashSet<>();
+//        Order order= new Order();
+//        order.setAmount(45D);
+//        order.setCurrency("RON");
+//        order.setUser(myUser);
+//        order.setStatus("In progress");
+//        order.setDateCreated(LocalDateTime.now());
 
-
-        Set<Order> orders = new HashSet<>();
-        Order order= new Order();
-        order.setAmount(45D);
-        order.setCurrency("RON");
-        order.setUser(myUser);
-        order.setStatus("In progress");
-        order.setDateCreated(LocalDateTime.now());
-
-        Order order2= new Order();
-        order2.setAmount(33D);
-        order2.setCurrency("RON");
-        order2.setUser(myUser);
-        order2.setStatus("In progress");
-        order2.setDateCreated(LocalDateTime.now());
-
-        orders.add(order);
-        orders.add(order2);
-        myUser.setOrders(orders);
-
-
+//        Set<Product> products = new HashSet<>();
+//        Product product =new Product();
+//        product.setName("Prom dress2");
+//        product.setDescription("This is prom dress2");
+//        product.setPrice(400D);
+//        product.setPictureUrl("d:\\Users\\Asus\\Desktop\\Pictures\\2.jpg");
+//
+//        products.add(product);
+//        order.setProducts(products);
+//        orders.add(order);
+//        myUser.setOrders(orders);
+//        orderService.save(order);
         userService.saveUser(myUser);
-
 
     }
 
@@ -170,26 +173,27 @@ public class RunAtStartUP {
         myUser.setPasswordConfirm("user3");
         myUser.setRandomTokenEmail("randomToken");
 
+//
+//        Set<Order> orders = new HashSet<>();
+//        Order order= new Order();
+//        order.setAmount(67D);
+//        order.setCurrency("RON");
+//        order.setUser(myUser);
+//        order.setStatus("In progress");
+//        order.setDateCreated(LocalDateTime.now());
 
-        Set<Order> orders = new HashSet<>();
-        Order order= new Order();
-        order.setAmount(67D);
-        order.setCurrency("RON");
-        order.setUser(myUser);
-        order.setStatus("In progress");
-        order.setDateCreated(LocalDateTime.now());
-
-        Order order2= new Order();
-        order2.setAmount(89D);
-        order2.setCurrency("RON");
-        order2.setUser(myUser);
-        order2.setStatus("In progress");
-        order2.setDateCreated(LocalDateTime.now());
-
-        orders.add(order);
-        orders.add(order2);
-        myUser.setOrders(orders);
-
+//        Set<Product> products = new HashSet<>();
+//        Product product =new Product();
+//        product.setName("Prom dress1");
+//        product.setDescription("This is prom dress1");
+//        product.setPrice(500D);
+//        product.setPictureUrl("d:\\Users\\Asus\\Desktop\\Pictures\\1.jpg");
+//
+//        products.add(product);
+//        order.setProducts(products);
+//        orders.add(order);
+//        myUser.setOrders(orders);
+//        orderService.save(order);
         userService.saveUser(myUser);
     }
 }

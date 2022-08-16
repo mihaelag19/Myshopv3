@@ -1,9 +1,9 @@
 
 package ro.itschool.exception;
 
-public class CustomException extends IllegalArgumentException {
-    public CustomException(String msg) {
-        super(msg);
-    }
+public class CustomException extends Exception {
 
+    public CustomException(String message) {
+        super(message);
+    }
 }

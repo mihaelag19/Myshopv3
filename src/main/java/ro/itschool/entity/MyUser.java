@@ -65,6 +65,11 @@ public class MyUser implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Set<Order> orders;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cart_id", referencedColumnName = "cart_id")
+    private Cart cart;
+
+
     @Transient
     private String passwordConfirm;
 
