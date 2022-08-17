@@ -6,7 +6,9 @@ import ro.itschool.exception.CustomException;
 
 import java.util.List;
 
-public interface CartService {   void deleteById(Long id) throws CustomException;
+public interface CartService {
+
+    void deleteById(Long id) throws CustomException;
 
 
     List<Product> getProducts(Product product);
