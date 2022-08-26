@@ -34,9 +34,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" th:href="@{/allproducts}" href="#">shop</a>
                 </li>
-<!--                <li class="nav-item active">-->
-<!--                    <a class="nav-link" sec:authorize="isAnonymous()" th:href="@{/login}" href="#">login</a>-->
-<!--                </li>-->
+
                 <li class="nav-item active">
                     <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#">logout</a>
                 </li>
@@ -57,7 +55,7 @@
     <div class="card-body">
         <h6 class="card-title">Welcome!</h6>
         <p class="card-text">Thanks for visiting Mila's Boutique! Here you will find the perfect dress for your event.</p>
-        <a href="@{/allproducts}" class="btn btn-primary">New Collection</a>
+        <a th:href="@{/allproducts}" class="btn btn-primary">New Collection</a>
     </div>
 </div>
 
