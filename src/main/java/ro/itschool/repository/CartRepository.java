@@ -13,6 +13,7 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
 
     @Transactional
     void deleteById(Long id);
+
     Optional<Cart> findById(Long id);
 
 
@@ -20,6 +21,14 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
             value = "SELECT * FROM order WHERE user_id = ?",
             nativeQuery = true)
     List<Order> findByUserId(Long userId);
+
+    @Query
+            (value = "select * from cart inner join product where product.cart_id=cart.cart_id;", nativeQuery = true)
+    List<Object> findAllBy();
+
+    @Query
+            (value = "select * from cart", nativeQuery = true)
+    List<Cart> findAll();
 
 }
 
