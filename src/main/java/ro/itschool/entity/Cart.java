@@ -13,14 +13,13 @@ import java.util.Set;
 @Entity
 public class Cart {
    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "cart_id")
-//    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cart_id")
-    private Long cartId;
+    private Long id;
+//   private Long cartId;
 
-//    @OneToMany(mappedBy = "cart", cascade = CascadeType.REMOVE)
-//    private Set<Product> products;
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.REMOVE)
+    private Set<Product> products;
 
     @OneToOne(mappedBy = "cart")
     private MyUser myUser;

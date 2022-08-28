@@ -24,10 +24,10 @@ public class Product {
     private Double price;
     private String description;
     private String pictureUrl;
-    private Long cartId;
+//    private Long cartId;
 
-//    @ManyToOne
-//    @JoinColumn(name = "cart_id")
-//    @ToString.Exclude
-//    private Cart cart;
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    @ToString.Exclude
+    private Cart cart;
 }

@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+import ro.itschool.entity.Cart;
 import ro.itschool.entity.MyUser;
+import ro.itschool.entity.Product;
 import ro.itschool.entity.Role;
 import ro.itschool.service.OrderService;
 import ro.itschool.service.ProductService;
@@ -18,8 +20,6 @@ import java.util.Set;
 public class RunAtStartUP {
     @Autowired
     private UserService userService;
-    @Autowired
-    private OrderService orderService;
     @Autowired
     private ProductService productService;
 
@@ -43,28 +43,17 @@ public class RunAtStartUP {
         myUser.setFullName("Popescu Laura");
         myUser.setPasswordConfirm("user0");
         myUser.setRandomTokenEmail("randomToken");
-
-
-//        Set<Order> orders = new HashSet<>();
-//        Order order= new Order();
-//        order.setAmount(50D);
-//        order.setCurrency("RON");
-//        order.setUser(myUser);
-//        order.setStatus("Completed");
-//        order.setDateCreated(LocalDateTime.now());
-//        Set<Product> products = new HashSet<>();
-//        Product product =new Product();
-//        product.setName("Prom dress4");
-//        product.setDescription("This is prom dress4");
-//        product.setPrice(440D);
-//        product.setPictureUrl("d:\\Users\\Asus\\Desktop\\Pictures\\4.jpg");
-//        products.add(product);
-//        order.setProducts(products);
-//        orders.add(order);
-//        myUser.setOrders(orders);
-//        orderService.save(order);
+        Cart cart=new Cart();
+        Set<Product> products = new HashSet<>();
+        Product product =new Product();
+        product.setName("Prom dress4");
+        product.setDescription("This is prom dress4");
+        product.setPrice(440D);
+        product.setPictureUrl("d:\\Users\\Asus\\Desktop\\Pictures\\4.jpg");
+        products.add(product);
+        cart.setProducts(products);
+        myUser.setCart(cart);
         userService.saveUser(myUser);
-
 
     }
 
@@ -86,28 +75,6 @@ public class RunAtStartUP {
         myUser.setFullName("Stanculet Simona");
         myUser.setPasswordConfirm("admin");
         myUser.setRandomTokenEmail("randomToken");
-
-
-//        Set<Order> orders = new HashSet<>();
-//        Order order= new Order();
-//        order.setAmount(120D);
-//        order.setCurrency("RON");
-//        order.setUser(myUser);
-//        order.setStatus("In progress");
-//        order.setDateCreated(LocalDateTime.now());
-
-//        Set<Product> products = new HashSet<>();
-//        Product product =new Product();
-//        product.setName("Prom dress3");
-//        product.setDescription("This is prom dress3");
-//        product.setPrice(440D);
-//        product.setPictureUrl("d:\\Users\\Asus\\Desktop\\Pictures\\3.jpg");
-
-//        products.add(product);
-//        order.setProducts(products);
-//        orders.add(order);
-//        myUser.setOrders(orders);
-//        orderService.save(order);
         userService.saveUser(myUser);
     }
 
@@ -129,30 +96,10 @@ public class RunAtStartUP {
         myUser.setPasswordConfirm("user2");
         myUser.setRandomTokenEmail("randomToken");
 
-//
-//        Set<Order> orders = new HashSet<>();
-//        Order order= new Order();
-//        order.setAmount(45D);
-//        order.setCurrency("RON");
-//        order.setUser(myUser);
-//        order.setStatus("In progress");
-//        order.setDateCreated(LocalDateTime.now());
-
-//        Set<Product> products = new HashSet<>();
-//        Product product =new Product();
-//        product.setName("Prom dress2");
-//        product.setDescription("This is prom dress2");
-//        product.setPrice(400D);
-//        product.setPictureUrl("d:\\Users\\Asus\\Desktop\\Pictures\\2.jpg");
-//
-//        products.add(product);
-//        order.setProducts(products);
-//        orders.add(order);
-//        myUser.setOrders(orders);
-//        orderService.save(order);
         userService.saveUser(myUser);
 
     }
+
 
 
     private void saveAnotherUser2() {
@@ -173,27 +120,6 @@ public class RunAtStartUP {
         myUser.setPasswordConfirm("user3");
         myUser.setRandomTokenEmail("randomToken");
 
-//
-//        Set<Order> orders = new HashSet<>();
-//        Order order= new Order();
-//        order.setAmount(67D);
-//        order.setCurrency("RON");
-//        order.setUser(myUser);
-//        order.setStatus("In progress");
-//        order.setDateCreated(LocalDateTime.now());
-
-//        Set<Product> products = new HashSet<>();
-//        Product product =new Product();
-//        product.setName("Prom dress1");
-//        product.setDescription("This is prom dress1");
-//        product.setPrice(500D);
-//        product.setPictureUrl("d:\\Users\\Asus\\Desktop\\Pictures\\1.jpg");
-//
-//        products.add(product);
-//        order.setProducts(products);
-//        orders.add(order);
-//        myUser.setOrders(orders);
-//        orderService.save(order);
         userService.saveUser(myUser);
     }
 }

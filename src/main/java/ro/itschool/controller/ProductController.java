@@ -21,22 +21,25 @@ import java.util.Optional;
 @Controller
 public class ProductController {
     @Autowired
-    private ProductRepository productRepository;
+    ProductRepository productRepository;
 
     @Autowired
     ProductServiceImpl productService;
 
+
+    //----------VIEW ALL PRODUCTS FOR USER----------------------------------------------
     @GetMapping("/viewProducts")
     public String getAllProducts(Model model) {
         model.addAttribute("products", productRepository.findAll());
         return "AllProducts";
     }
-
-    @GetMapping("/allproducts")
+    //----------VIEW ALL PRODUCTS FOR ADMIN----------------------------------------------
+    @GetMapping("/allProducts")
     public String getProducts(Model model) {
         model.addAttribute("products", productRepository.findAll());
         return "products";
     }
+    //----------ADD PRODUCTS FOR ADMIN----------------------------------------------
 
     @GetMapping("/products/add")
     public String addProduct(Model model) {
@@ -55,28 +58,18 @@ public class ProductController {
         model.addAttribute("productObj", product);
         String imageUrl = file.get(0).getOriginalFilename();
         product.setPictureUrl(imageUrl);
-        //   product.setCartId(product.getId());
         productRepository.save(product);
-        return "redirect:/allproducts";
+        return "redirect:/allProducts";
     }
 
-    @GetMapping("/deleteProduct/{id}")
-    public String delete(@PathVariable("id") long id) throws CustomException {
-        productService.findbyId(id);
-        return "redirect:/allproducts";
+    //----------ADD PRODUCTS FOR ADMIN----------------------------------------------
+
+
+    @DeleteMapping("/deleteProduct/{id}")
+    public String delete(@ModelAttribute Model model, @PathVariable Long id) throws CustomException2 {
+        productRepository.deleteById(id);
+        return "redirect:/allProducts";
+
+
     }
-
-    @GetMapping("/updateProduct/{name}")
-    public String updateProduct(@PathVariable String name) throws CustomException {
-        Optional.ofNullable(productRepository.findByName(name)).orElseThrow(() -> new CustomException("Product does not exist"));
-        return "redirect:/allproducts";
-    }
-
-@DeleteMapping("/deleteProduct/{id}")
-public String delete(@PathVariable Long id) throws CustomException2 {
-
-        productService.deleteById(id);
-    return "redirect:allproducts";
-}
-
 }
