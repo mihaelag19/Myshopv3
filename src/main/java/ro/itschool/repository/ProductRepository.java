@@ -9,9 +9,7 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
-   Product deleteByName(String name);
 
-    Product findByName(String name);
 
 
 

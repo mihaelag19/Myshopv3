@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.itschool.entity.Product;
 import ro.itschool.exception.CustomException2;
-import ro.itschool.repository.OrderRepository;
 import ro.itschool.repository.ProductRepository;
 import ro.itschool.service.ProductService;
 
@@ -17,13 +16,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
-    @Autowired
-    private OrderRepository orderRepository;
 
 
     @Override
-    public void save(Product product) {
+    public Product save(Product product) {
         productRepository.save(product);
+        return product;
     }
 
 
@@ -35,27 +33,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteById(Long id) throws CustomException2 {
 
+
     }
 
     @Override
-    public Optional<Product> findById(Long id) {
+    public Optional<Product> findById(long id) {
         return productRepository.findById(id);
-    }
-
-    @Override
-    public void update(Product product) {
-        this.productRepository.save(product);
-
-    }
-
-
-    @Override
-    public List<Product> getAllProductsByOrderId(Long orderId) {
-        return productRepository.findByOrderId(orderId);
-    }
-
-    @Override
-    public void findbyId(Long id) {
-
     }
 }

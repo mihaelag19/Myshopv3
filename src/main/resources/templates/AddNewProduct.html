@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<!--<div sec:authorize="hasRole('ROLE_ADMIN')">-->
+    <div class="container">
+        <h1>ADD A NEW PRODUCT</h1>
+        <hr>
+        <h2>Save Product</h2>
+
+        <form action="#" th:action="@{/saveProduct}" th:object="${product}" method="POST" enctype="multipart/form-data">
+            <input type="text" th:field="*{name}" placeholder="Name" class="form-control mb-4 col-4">
+
+            <input type="text" th:field="*{price}" placeholder="Price" class="form-control mb-4 col-4">
+
+            <input type="text" th:field="*{description}" placeholder="description" class="form-control mb-4 col-4">
+
+
+            <label> Picture: </label>
+            <input type="file" name="image" accept="image/png, image/jpeg" />
+
+            <br>
+            <br>
+
+            <a href="/products">
+                <input type="submit"/>
+            </a>
+        </form>
+        <hr>
+
+<!--        <form action="@{/products}">-->
+<!--            <button type="button" class="button1" th:onclick="|window.location.href='/products'|"> Back to products</button>-->
+<!--        </form>-->
+    </div>
+</div>
+
+</body>
+</html>

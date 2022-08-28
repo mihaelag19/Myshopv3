@@ -8,7 +8,6 @@ import ro.itschool.entity.Cart;
 import ro.itschool.entity.MyUser;
 import ro.itschool.entity.Product;
 import ro.itschool.entity.Role;
-import ro.itschool.service.OrderService;
 import ro.itschool.service.ProductService;
 import ro.itschool.service.UserService;
 import ro.itschool.util.Constants;
@@ -49,7 +48,7 @@ public class RunAtStartUP {
         product.setName("Prom dress4");
         product.setDescription("This is prom dress4");
         product.setPrice(440D);
-        product.setPictureUrl("d:\\Users\\Asus\\Desktop\\Pictures\\4.jpg");
+        product.setPhotos("d:\\Users\\Asus\\Desktop\\Pictures\\4.jpg");
         products.add(product);
         cart.setProducts(products);
         myUser.setCart(cart);

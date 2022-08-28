@@ -23,8 +23,26 @@ public class Product {
     private String name;
     private Double price;
     private String description;
-    private String pictureUrl;
+    private String photos;
 //    private Long cartId;
+
+
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (photos == null);
+
+
+        return "/product-photos/" + id + "/" + photos;
+    }
+
+    public String getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(String photos) {
+        this.photos = photos;
+    }
 
     @ManyToOne
     @JoinColumn(name = "cart_id")

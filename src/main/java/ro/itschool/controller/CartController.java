@@ -1,75 +1,85 @@
 package ro.itschool.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import ro.itschool.entity.Cart;
-import ro.itschool.entity.Product;
-import ro.itschool.repository.CartRepository;
-import ro.itschool.repository.ProductRepository;
-import ro.itschool.util.Constants;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import ro.itschool.entity.Product;
+import ro.itschool.global.GlobalData;
+import ro.itschool.service.ProductService;
 
 @Controller
 public class CartController {
 
-    @Autowired
-    CartRepository cartRepository;
-    @Autowired
-    private ProductRepository productRepository;
+  @Autowired
+  ProductService productService;
 
-    @GetMapping(value = "/addToCart/{id}")
-    public String addToCart(Product product, @PathVariable("id") Long id) {
-        Cart cart = new Cart();
-        cart.setCartId(id);
-        cartRepository.save(cart);
-        product.setCartId(product.getId());
-        Product p = productRepository.findAllById(product.getId());
-        p.setCartId(id);
-        productRepository.save(p);
+
+    //----------ADD PRODUCTS TO CART----------------------------------------------
+    @GetMapping("/addToCart/{id}")
+    public String addToCart(@PathVariable long id){
+        GlobalData.cart.add(productService.findById(id).get());
         return "redirect:/cart";
     }
 
     @GetMapping(value = "/cart")
-    public String cart(Model model) {
-        List<Object> objects = cartRepository.findAllBy();
-        List<Product> products = new ArrayList<>();
-        for (int i = 0; i < objects.size(); i++) {
-            Product product = new Product();
-            Object[] array = (Object[]) objects.get(i);
-            Long cartId = (Long) array[1];
-            String desc = (String) array[4];
-            String name = (String) array[5];
-            //String image = (String) array[6];
-            Double price = (Double) array[6];
-            product.setName(name);
-            product.setDescription(desc);
-            //product.setPictureUrl(image);
-            product.setPrice(price);
-            product.setCartId(cartId);
-            products.add(product);
-        }
-        model.addAttribute("cart", products);
+    public String cartGet(Model model){
+        model.addAttribute("total", GlobalData.cart.stream().mapToDouble(Product::getPrice).sum());
+   model.addAttribute("cart", GlobalData.cart);
         return "cart";
     }
 
-    @GetMapping("/delete/{cart_id}")
-    public String delete(@PathVariable("cart_id") long cartId) {
-        List<Object> objects = cartRepository.findAllBy();
-        for (int i = 0 ; i < objects.size() ; i++) {
-            Object[] arry = (Object[]) objects.get(i);
-            Long cart_Id = (Long) arry[1];
-            if (cart_Id.equals(cartId)) {
-                cartRepository.deleteById(cartId);
-                Product product = productRepository.findAllById((Long) arry[0]);
-                product.setCartId(null);
-                productRepository.save(product);
-            }
-        }
+    @GetMapping("/removeItem/{index}")
+    public String cartItemRemove(@PathVariable int index){
+        GlobalData.cart.remove(productService.findById(index).get());
         return "redirect:/cart";
     }
+
+//    @GetMapping("/checkout}")
+//    public String checkout(Model model){
+//       return "checkout";
+//    }
+
+
+//    @GetMapping(value = "/cart")
+//    public String cart(Model model) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        MyUser user= userRepository.findByUsernameIgnoreCase(authentication.getName());
+//        Set <Product> products= user.getCart().getProducts();
+//        model.addAttribute("cart", products);
+//        return "cart";
+//
+//    };
+
+//    //----------ADD PRODUCTS TO CART----------------------------------------------
+//    @RequestMapping("/addToCart/{id}")
+//    public String addProductToCart(@PathVariable("id") Long id) {
+//        final Optional<Cart> cart = cartRepository.findById(id);
+//        final Optional<Product> product =productRepository.findById(id);
+//            cart.get().getProducts().add(product);
+//            cartService.update(cart.get());
+//            return "redirect:/cart";
+//        }
+//        return ("Cart not found : " + id);
+//    }
+
+
+//    @RequestMapping(value = "/addToCart/{id}")
+//    public String addProductToCart(@PathVariable("id") Long id, Model model) {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        MyUser user= userRepository.findByUsernameIgnoreCase(authentication.getName());
+//        Set <Product> products= user.getCart().getProducts();
+//        products.add(productRepository.findById(id).get());
+//
+//        Cart cart=user.getCart();
+//        cart.setProducts(products);
+//        user.setCart(cart);
+//        userRepository.save(user);
+//        return "redirect:/cart";
+//    }
+
+
+
 }

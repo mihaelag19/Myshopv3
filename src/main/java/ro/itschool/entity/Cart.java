@@ -23,5 +23,40 @@ public class Cart {
 
     @OneToOne(mappedBy = "cart")
     private MyUser myUser;
+ double subtotal;
 
+ public Long getId() {
+  return id;
+ }
+
+ public void setId(Long id) {
+  this.id = id;
+ }
+
+ public Set<Product> getProducts() {
+  return products;
+ }
+
+ public void setProducts(Set<Product> products) {
+  this.products = products;
+ }
+
+ public MyUser getMyUser() {
+  return myUser;
+ }
+
+ public void setMyUser(MyUser myUser) {
+  this.myUser = myUser;
+ }
+
+ public double getSubtotal() {
+  return subtotal;
+ }
+
+ public void setSubtotal(double subtotal) {
+  this.subtotal = subtotal;
+ }
+
+ public void setProduct(Product product) {
+ }
 }

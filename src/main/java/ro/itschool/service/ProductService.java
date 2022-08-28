@@ -8,18 +8,14 @@ import java.util.Optional;
 
 public interface ProductService {
 
-    void save(Product product);
+    Product save(Product product);
 
-    List<Product> getAllProducts();
+
+   List<Product> getAllProducts();
 
     void deleteById(Long id) throws CustomException2;
 
-    Optional<Product> findById(Long id);
 
-    void update(Product product);
-
-
-    List<Product> getAllProductsByOrderId(Long orderId);
-    void findbyId(Long id);
+   Optional<Product> findById(long id);
 }
 
