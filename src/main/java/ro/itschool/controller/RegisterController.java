@@ -23,10 +23,10 @@ public class RegisterController {
     @GetMapping(value = "/register")
     public String registerForm(Model model) {
         MyUser user = new MyUser();
-        user.setAccountNonExpired(true);
-        user.setAccountNonLocked(true);
-        user.setCredentialsNonExpired(true);
-        user.setEnabled(false);
+//        user.setAccountNonExpired(true);
+//        user.setAccountNonLocked(true);
+//        user.setCredentialsNonExpired(true);
+//        user.setEnabled(false);
 
         model.addAttribute("user", user);
 
@@ -38,6 +38,12 @@ public class RegisterController {
         if (user.getPassword().equals(user.getPasswordConfirm())) {
 
             user.setRoles(Collections.singleton(new Role(Constants.ROLE_USER)));
+
+            user.setAccountNonExpired(true);
+            user.setAccountNonLocked(true);
+            user.setCredentialsNonExpired(true);
+            user.setEnabled(false);
+
             userService.saveUser(user);
             return "register-success";
         } else {

@@ -75,10 +75,13 @@
                             <table>
                                 <tbody>
                                 <tr th:each="product : ${cart}">
+
+<!--                                     <img th:src="*{product.photos}" lass="img-round"-->
+<!--                                        style="margin-left:1em;margin-right:1em;" width="134" height="205"/>-->
                                     <td th:text="*{product.name}"></td>
                                     <td th:text="*{product.description}"></td>
                                     <td th:text="*{product.price}"></td>
-                                    <td><a th:href="@{/removeItem/{index}(index=${product.id})}" class="btn btn-outline-danger">Remove product</a></td>
+<!--                                    <td><a th:href="@{/removeItem/{index}(index=${product.id})}" class="btn btn-outline-danger">Remove product</a></td>-->
                                 </tr>
                                 </tbody>
                             </table>
@@ -121,7 +124,9 @@
                                 </li>
                             </ul>
 
-                            <a th:href="@{/checkout}" h class="btn btn-primary btn-block waves-effect waves-light">go
+
+
+                            <a th:href="@{/placeOrder}"  class="btn btn-primary btn-block waves-effect waves-light">go
                                 to
                                 checkout</a>
 

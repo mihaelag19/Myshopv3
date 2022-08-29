@@ -9,13 +9,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 import ro.itschool.entity.Product;
-import ro.itschool.exception.CustomException2;
 import ro.itschool.repository.ProductRepository;
 import ro.itschool.service.impl.ProductServiceImpl;
 import ro.itschool.util.FileUploadUtil;
 
+import java.io.File;
 import java.io.IOException;
-import java.util.List;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 @Controller
@@ -50,18 +53,28 @@ public class ProductController {
         return "AddNewProduct";
     }
 
+
+
+
     @PostMapping("/saveProduct")
-    public RedirectView saveProduct(@ModelAttribute("product") Product product,
-                                  @RequestParam("image") MultipartFile multipartFile) throws IOException {
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-
-        product.setPhotos(fileName);
-        Product saveProduct = productService.save(product);
-        String uploadDir = "product-photos/" + saveProduct.getId();
-
-        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-        return new RedirectView("/", true);
+    public String  saveProduct(@ModelAttribute("product") Product product, Model model){
+        model.addAttribute("product",product);
+        productService.save(product);
+        return "redirect:/allProducts";
     }
+
+//    @PostMapping("/saveProduct")
+//    public RedirectView saveProduct(@ModelAttribute("product") Product product,
+//                                    @RequestParam("image") MultipartFile multipartFile) throws IOException {
+//        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//
+//        product.setPhotos(fileName);
+//        Product saveProduct = productService.save(product);
+//        String uploadDir = "product-photos/" + saveProduct.getId();
+//
+//        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+//        return new RedirectView("/allProducts", true);
+//    }
 
     @GetMapping("/product/{id}")
     public String product(@PathVariable Long id, Model model) {
@@ -72,7 +85,7 @@ public class ProductController {
     @GetMapping("/deleteProduct/{id}")
     public String delete(@PathVariable("id") Long id){
        productRepository.deleteById(id);
-        return "redirect:/index";
+        return "redirect:/allProducts";
     }
 
 

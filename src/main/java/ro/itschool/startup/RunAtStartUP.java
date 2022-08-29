@@ -23,7 +23,6 @@ public class RunAtStartUP {
     private ProductService productService;
 
 
-
     @EventListener(ContextRefreshedEvent.class)
     public void contextRefreshedEvent() {
         MyUser myUser = new MyUser();
@@ -42,9 +41,9 @@ public class RunAtStartUP {
         myUser.setFullName("Popescu Laura");
         myUser.setPasswordConfirm("user0");
         myUser.setRandomTokenEmail("randomToken");
-        Cart cart=new Cart();
+        Cart cart = new Cart();
         Set<Product> products = new HashSet<>();
-        Product product =new Product();
+        Product product = new Product();
         product.setName("Prom dress4");
         product.setDescription("This is prom dress4");
         product.setPrice(440D);
@@ -54,6 +53,10 @@ public class RunAtStartUP {
         myUser.setCart(cart);
         userService.saveUser(myUser);
 
+        saveAdminUser();
+        saveProduct1();
+        saveProduct2();
+        saveProduct3();
     }
 
     private void saveAdminUser() {
@@ -100,7 +103,6 @@ public class RunAtStartUP {
     }
 
 
-
     private void saveAnotherUser2() {
 
         MyUser myUser = new MyUser();
@@ -120,5 +122,32 @@ public class RunAtStartUP {
         myUser.setRandomTokenEmail("randomToken");
 
         userService.saveUser(myUser);
+    }
+
+    public void saveProduct1() {
+        Product product = new Product();
+        product.setName("Imola");
+        product.setPrice(4000D);
+        product.setDescription("This is a dress");
+        product.setPhotos("https://tinyurl.com/b3sjff8s");
+        productService.save(product);
+    }
+
+    public void saveProduct2() {
+        Product product = new Product();
+        product.setName("Favela");
+        product.setPrice(6000D);
+        product.setDescription("This is a dress");
+        product.setPhotos("https://tinyurl.com/8u98kkx2");
+        productService.save(product);
+    }
+
+    public void saveProduct3() {
+        Product product = new Product();
+        product.setName("Mila");
+        product.setPrice(5000D);
+        product.setDescription("This is a dress");
+        product.setPhotos("https://tinyurl.com/2y3h8yew");
+        productService.save(product);
     }
 }

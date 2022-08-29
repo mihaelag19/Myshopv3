@@ -28,13 +28,14 @@ public class Product {
 
 
 
-    @Transient
-    public String getPhotosImagePath() {
-        if (photos == null);
+//    @Transient
+//    public String getPhotosImagePath() {
+//        if (photos == null);
+//
+//
+//        return "/product-photos/" +  "/" + photos;
+//    }
 
-
-        return "/product-photos/" + id + "/" + photos;
-    }
 
     public String getPhotos() {
         return photos;

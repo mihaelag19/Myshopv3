@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import ro.itschool.entity.Product;
 import ro.itschool.global.GlobalData;
+import ro.itschool.repository.CartRepository;
 import ro.itschool.service.ProductService;
 
 @Controller
@@ -15,6 +16,8 @@ public class CartController {
 
   @Autowired
   ProductService productService;
+  @Autowired
+    CartRepository cartRepository;
 
 
     //----------ADD PRODUCTS TO CART----------------------------------------------
@@ -31,16 +34,19 @@ public class CartController {
         return "cart";
     }
 
-    @GetMapping("/removeItem/{index}")
-    public String cartItemRemove(@PathVariable int index){
-        GlobalData.cart.remove(productService.findById(index).get());
-        return "redirect:/cart";
-    }
 
-//    @GetMapping("/checkout}")
-//    public String checkout(Model model){
-//       return "checkout";
+
+//    @RequestMapping("/removeItem/{index}")
+//    public String cartItemRemove(@PathVariable int index){
+//        GlobalData.cart.remove(productService.findById(index).get());
+//        return "redirect:/cart";
 //    }
+
+    @GetMapping(value ="/placeOrder")
+    public String checkout(Model model){
+
+       return "placeOrder";
+    }
 
 
 //    @GetMapping(value = "/cart")
